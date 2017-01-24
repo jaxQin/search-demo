@@ -4,7 +4,7 @@
         <div class="search-input">
             <input type="text" v-model="keyword" value="" @keyup="get" @keydown.down="selectDown()" @keydown.up.prevent="selectUp()" @keydown.enter="search()" />
             <span class="search-reset" @click="clearInput()">&times;</span>
-            <button class="search-btn" @click="search()" >搜一下</button>
+            <button class="search-btn" @click="search()">搜一下</button>
             <div class="search-select">
                 <ul v-show="searchData">
                     <li v-for="(item,index) in searchData" class="search-select-option" :class="{active:index==now}" @mouseover="hover(index)" @click="search()">{{item}}</li>
@@ -81,10 +81,11 @@ export default {
         },
         hover(i) {
             this.now = i;
+            this.keyword = this.searchData[this.now];
         },
-        clearInput(){
-          this.keyword="";
-          this.searchData=[];
+        clearInput() {
+            this.keyword = "";
+            this.searchData = [];
         }
 
     }
